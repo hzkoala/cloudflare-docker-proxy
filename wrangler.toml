@@ -1,4 +1,4 @@
-name = "pages-proxy-docker"
+name = "worker-proxy-docker"
 compatibility_date = "2023-12-01"
 
 [dev]
@@ -14,16 +14,27 @@ MODE = "debug"
 TARGET_UPSTREAM = "https://registry-1.docker.io"
 
 [env.production]
-name = "pages-proxy-docker"
+name = "worker-proxy-docker"
+# routes = [
+#   { pattern = "docker.dotink.tech", custom_domain = true },
+#   { pattern = "quay.dotink.tech", custom_domain = true },
+#   { pattern = "gcr.dotink.tech", custom_domain = true },
+#   { pattern = "k8s-gcr.dotink.tech", custom_domain = true },
+#   { pattern = "k8s.dotink.tech", custom_domain = true },
+#   { pattern = "ghcr.dotink.tech", custom_domain = true },
+#   { pattern = "cloudsmith.dotink.tech", custom_domain = true },
+# ]
+
 routes = [
-  { pattern = "docker.dotink.tech", custom_domain = true },
-  { pattern = "quay.dotink.tech", custom_domain = true },
-  { pattern = "gcr.dotink.tech", custom_domain = true },
-  { pattern = "k8s-gcr.dotink.tech", custom_domain = true },
-  { pattern = "k8s.dotink.tech", custom_domain = true },
-  { pattern = "ghcr.dotink.tech", custom_domain = true },
-  { pattern = "cloudsmith.dotink.tech", custom_domain = true },
+  { pattern = "docker.dotink.tech/*", zone_name = "dotink.tech" },
+  { pattern = "quay.dotink.tech/*", zone_name = "dotink.tech" },
+  { pattern = "gcr.dotink.tech/*", zone_name = "dotink.tech" },
+  { pattern = "k8s-gcr.dotink.tech/*", zone_name = "dotink.tech" },
+  { pattern = "k8s.dotink.tech/*", zone_name = "dotink.tech" },
+  { pattern = "ghcr.dotink.tech/*", zone_name = "dotink.tech" },
+  { pattern = "cloudsmith.dotink.tech/*", zone_name = "dotink.tech" },
 ]
+
 
 [env.production.vars]
 MODE = "production"
